@@ -7,9 +7,11 @@ import './header.css';
 const Header = props => {
     return (
         <div id="header" className="ui secondary menu">
-            <Link to="/" className="item">All Blogs</Link>
-            <Link to="/create" className="item">New Blog</Link>
-            <Link to="/personal" className="item">Personal</Link>
+            <div id="left-menu-css">
+                <Link to="/" className="item">All Blogs</Link>
+                <Link to="/create" className="item">New Blog</Link>
+            </div>
+
             <div id="right-menu" className="right menu">
                 {props.username &&
                     <div style={{ margin: 10 }}>signed in as

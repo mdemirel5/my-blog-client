@@ -1,3 +1,4 @@
 {
-    "jwtPrivateKey": "123"
+    "jwtPrivateKey": "1234",
+    "db": "mongodb://localhost:27017/my-blog"
 }

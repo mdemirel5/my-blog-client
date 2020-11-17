@@ -8,6 +8,10 @@ class BlogList extends React.Component {
 
     componentDidMount() {
         this.props.fetchBlogs();
+        setTimeout(() => {
+            console.log('Bloglist', this.props.blogs);
+        }, 1000);
+
     };
 
     renderList() {

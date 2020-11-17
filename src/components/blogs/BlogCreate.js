@@ -38,7 +38,7 @@ class BlogCreate extends React.Component {
                 className="ui form error">
                 <Field name="title" component={this.renderInput} label="Title: " />
                 <Field name="content" component={this.renderInput} label="Content: " />
-                <button className="ui button primary">Submit</button>
+                <button type="submit" className="ui button primary">Submit</button>
             </form>
         )
     }

@@ -8,7 +8,7 @@ import my_api from '../../apis/my_api';
 
 class Login extends React.Component {
     state = {
-        email: 'abc@a.de',
+        email: 'abc@ab.de',
         password: '123',
         error: '',
         submitted: '',
