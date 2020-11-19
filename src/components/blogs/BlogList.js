@@ -26,7 +26,7 @@ class BlogList extends React.Component {
     }
     render() {
         return (
-            <div style={{ maxWidth: 660, margin: 'auto' }}>
+            <div className="ui items" style={{ maxWidth: 660, margin: 'auto' }}>
                 {this.renderList()}
             </div>
         );

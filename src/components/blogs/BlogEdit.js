@@ -12,9 +12,10 @@ class BlogEdit extends React.Component {
     }
 
     componentDidMount() {
+
+
         this.props.fetchBlogs()
             .then(() => {
-                console.log('blogedit tamam');
                 this.setState({
                     title: this.props.blog.title,
                     content: this.props.blog.content
@@ -35,7 +36,8 @@ class BlogEdit extends React.Component {
         e.preventDefault();
         const blog = {
             title: this.state.title,
-            content: this.state.content
+            content: this.state.content,
+            userId: this.props.userId
         };
 
         this.props.editBlog(this.props.match.params.id, blog);
@@ -77,6 +79,10 @@ class BlogEdit extends React.Component {
     };
 }
 const mapStateToProps = (state, ownProps) => {
-    return { blog: state.blogs[ownProps.match.params.id] };
+    return {
+        blog: state.blogs[ownProps.match.params.id],
+        isSignedIn: state.auth.isSignedIn,
+        userId: state.auth.userId
+    };
 };
 export default connect(mapStateToProps, { fetchBlogs, editBlog })(BlogEdit);

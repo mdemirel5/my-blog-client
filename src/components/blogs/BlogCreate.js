@@ -28,7 +28,8 @@ class BlogCreate extends React.Component {
 
 
     onSubmit = (formValues) => {
-        this.props.createBlog(formValues);
+        console.log('BlogCreate- form values', formValues)
+        this.props.createBlog({ ...formValues, userId: this.props.userId });
     };
 
     render() {
@@ -57,8 +58,14 @@ const validate = formValues => {
     return errors;
 };
 
+const mapStateToProps = (state) => {
+    return {
+        isSignedIn: state.auth.isSignedIn,
+        userId: state.auth.userId
+    };
+};
 
-const decoratedComponent = connect(null, { createBlog })(BlogCreate);
+const decoratedComponent = connect(mapStateToProps, { createBlog })(BlogCreate);
 
 export default reduxForm({
     form: 'BlogCreate',

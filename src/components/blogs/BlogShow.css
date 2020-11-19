@@ -1,8 +1,54 @@
 
-.blog-div {
-    margin-bottom: 20px;
-}
 
 hr {
-    border-top: dashed 1px
+    border-top: solid 1px #eee;
+}
+
+#button {
+    border: none !important;
+}
+
+.my-1 {
+    margin: 20px 0;
+}
+
+.m-top-1 {
+    margin-top: 1rem;
+}
+
+.meta-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-link.blue {
+    display: inline-block;
+    padding: 0.5rem 0.5rem;
+    border: none;
+    background: #fff;
+    color: #2288ee;
+    margin-right: 0;
+    border-radius: 5px;
+    line-height: 1.5;
+    font-size: 1rem;
+
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
+.btn-link.red {
+    display: inline-block;
+    padding: 0.5rem 0.5rem;
+    border: none;
+    background: #fff;
+    color: #f31632;
+    margin-right: 0;
+    border-radius: 5px;
+    line-height: 1.5;
+    font-size: 1rem;
+
+    text-align: center;
+    cursor: pointer;
+    outline: none;
 }

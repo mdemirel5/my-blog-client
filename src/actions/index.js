@@ -58,7 +58,7 @@ export const editBlog = (id, blog) => async dispatch => {
     history.push("/");
 };
 
-export const createBlog = blog => async dispatch => {
+export const createBlog = (blog) => async dispatch => {
     const response = await my_api.post('/blogs',
         blog,
         {
