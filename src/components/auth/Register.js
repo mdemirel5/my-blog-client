@@ -7,7 +7,7 @@ import my_api from '../../apis/my_api';
 
 class Register extends React.Component {
     state = {
-        email: 'abc@a.de',
+        email: '@abc.de',
         password: '123',
         name: '',
         error: '',
@@ -92,9 +92,9 @@ class Register extends React.Component {
                     </div>
                     <div className="field">
                         <button
-                            className="ui button"
+                            className="ui blue button"
                             type="submit"
-                        >Login
+                        >Submit
                         </button>
                         {loading &&
                             <div className="ui segment">

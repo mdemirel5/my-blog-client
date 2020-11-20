@@ -35,9 +35,6 @@ const blogReducer = (state = {}, action) => {
         case EDIT_BLOG: return { ...state, [action.payload.id]: action.payload };
         case CREATE_BLOG: return { ...state, [action.payload.id]: action.payload };
         case DELETE_BLOG: return _.omit(state, action.payload);
-        case SIGN_OUT: return {
-
-        };
         default: return state
     }
 };

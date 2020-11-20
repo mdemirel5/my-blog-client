@@ -26,12 +26,14 @@ class AuthButton extends React.Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
     }
+
     renderLogoutButton() {
         return (
             <button className="ui red button"
                 onClick={this.onSingOutClick}>Logout</button>
         );
     };
+
     render() {
         return (
             <div>

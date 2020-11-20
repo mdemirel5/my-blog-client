@@ -62,8 +62,7 @@ class BlogShow extends React.Component {
 
                         </div>
                         <div className="author">
-                            {this.props.username &&
-                                this.renderBlogAuthor()}
+                            {this.renderBlogAuthor()}
                         </div></div>
 
                 </div>
