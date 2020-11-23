@@ -4,82 +4,94 @@ import { connect } from 'react-redux';
 
 import history from '../../history';
 import my_api from '../../apis/my_api';
+import { signIn } from '../../actions';
 
 class Register extends React.Component {
     state = {
-        email: '@abc.de',
-        password: '123',
+        username: '',
+        password: '',
         name: '',
         error: '',
         submitted: '',
         loading: ''
     };
 
-    onEmailChange = e => {
-        this.setState({ email: e.target.value });
+    onUsernameChange = e => {
+        // It is decided to remove name as an input, but we will username as name
+        this.setState({ username: e.target.value, name: e.target.value });
     };
 
     onPasswordChange = e => {
         this.setState({ password: e.target.value });
     };
 
-    onNameChange = e => {
-        this.setState({ name: e.target.value });
-    };
 
     onSubmit = e => {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { email, password, name } = this.state;
+        const { username, password, name } = this.state;
 
         // stop here if form is invalid
-        if (!email || !password || !name) return;
+        if (!username || !password || !name) return;
 
         this.setState({ loading: true });
 
-        const newUser = _.pick(this.state, ['email', 'password', 'name']);
+        const newUser = _.pick(this.state, ['username', 'password', 'name']);
         my_api.post('/api/users', newUser)
-            .then((res) => {
+            .then(() => {
+                //Automatic Login starts
+                const user = _.pick(this.state, ['username', 'password']);
+                my_api.post('/api/auth', user)
+                    .then((res) => {
+                        localStorage.setItem('token', res.data.token);
+                        localStorage.setItem('user', JSON.stringify(res.data.user));
 
-                console.log('the user is created successfully')
-                this.setState({ password: '' });
-                history.push('/');
-                // window.location.reload();
-            }/* ,
-            error => {this.setState({error, loading: false}); }*/
-
-            )
+                        // Clear password and redirect home
+                        this.props.signIn(res.data.user);
+                        this.setState({ password: '' });
+                        history.push('/');
+                    }
+                    )
+                    .catch(error => {
+                        this.setState({ error, loading: false });
+                    });
+            })
             .catch(error => {
                 this.setState({ error, loading: false });
             });
+
+
     }
+
 
     renderError(error) {
         if (!error) {
             return <div>Connection Problem</div>;
-        } else if (error.response.status === 400) {
-            return <div>Email or password is wrong!</div>
+        } else {
+            console.log('error- Register.js', error);
+            return <div>The user is already registered</div>
         }
     }
 
+
     render() {
-        const { email, password, name, error, submitted, loading } = this.state;
+        const { username, password, error, submitted, loading } = this.state;
         return (
             <div>
                 <form className="ui form" onSubmit={this.onSubmit}>
                     <div className="field">
-                        <label>Name: </label>
+                        {/*    <label>Name: </label>
                         <input type="text" value={name} onChange={this.onNameChange} />
                         {submitted && !name &&
                             <div>Name is reqired!</div>
-                        }
+                        } */}
                     </div>
                     <div className="field">
-                        <label>Email: </label>
-                        <input type="text" value={email} onChange={this.onEmailChange} />
-                        {submitted && !email &&
-                            <div>Email is reqired!</div>
+                        <label>Username: </label>
+                        <input type="text" value={username} onChange={this.onUsernameChange} />
+                        {submitted && !username &&
+                            <div>Username is reqired!</div>
                         }
                     </div>
                     <div className="field">
@@ -107,14 +119,9 @@ class Register extends React.Component {
                         <div>{this.renderError(error)}</div>}
                 </form>
 
-
-                {/* {error && error.response.status === 400 &&
-                <div>Email or password is wrong! </div>} */}
-                {/* error && error.response.status !== 400 &&
-                <div>Errr status is not 400 </div> */}
             </div>
         );
     };
 };
 
-export default connect(null)(Register);
+export default connect(null, { signIn })(Register);

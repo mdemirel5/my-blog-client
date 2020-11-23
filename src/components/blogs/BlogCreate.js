@@ -27,9 +27,14 @@ class BlogCreate extends React.Component {
     };
 
 
-    onSubmit = (formValues) => {
-        console.log('BlogCreate- form values', formValues)
-        this.props.createBlog({ ...formValues, userId: this.props.userId });
+    onSubmit = formValues => {
+        if (!this.props.isSignedIn) {
+            alert('To create a blog, you must be logged in.');
+            return;
+        } else {
+            this.props.createBlog({ ...formValues, userId: this.props.userId });
+        }
+
     };
 
     render() {

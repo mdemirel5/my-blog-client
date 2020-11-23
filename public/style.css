@@ -1,9 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+/* * 
   body {
     font-family: 'Lato', sans-serif;
     line-height: 1.5;
@@ -75,4 +70,34 @@
   #header #right-menu {
       justify-self: end;
       display: flex;
+  } */
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .my-1 {
+    margin: 1rem 0;
+  }
+
+  .py-1 {
+    padding: 1rem 0;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  #login-register-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .btn-block {
+    width: 100%;
   }

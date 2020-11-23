@@ -13,7 +13,6 @@ class BlogEdit extends React.Component {
 
     componentDidMount() {
 
-
         this.props.fetchBlogs()
             .then(() => {
                 this.setState({
@@ -34,13 +33,19 @@ class BlogEdit extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const blog = {
-            title: this.state.title,
-            content: this.state.content,
-            userId: this.props.userId
-        };
 
-        this.props.editBlog(this.props.match.params.id, blog);
+        if (this.props.userId === this.props.blog.user._id) {
+            const blog = {
+                title: this.state.title,
+                content: this.state.content,
+                userId: this.props.userId
+            };
+
+            this.props.editBlog(this.props.match.params.id, blog);
+        } else {
+            alert('Only the author of this blog can edit this blog');
+        }
+
     }
 
     renderHelper() {

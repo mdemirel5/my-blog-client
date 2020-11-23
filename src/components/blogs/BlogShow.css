@@ -8,9 +8,6 @@ hr {
     border: none !important;
 }
 
-.my-1 {
-    margin: 20px 0;
-}
 
 .m-top-1 {
     margin-top: 1rem;
@@ -22,33 +19,47 @@ hr {
     align-items: center;
 }
 
-.btn-link.blue {
-    display: inline-block;
-    padding: 0.5rem 0.5rem;
+.btn-link.blue, .btn-link.blue a  {
+    margin-right: 0.5rem !important;
     border: none;
     background: #fff;
     color: #2288ee;
-    margin-right: 0;
     border-radius: 5px;
     line-height: 1.5;
     font-size: 1rem;
-
     text-align: center;
     cursor: pointer;
     outline: none;
+    transform: 0 0; 
 }
+
 .btn-link.red {
-    display: inline-block;
-    padding: 0.5rem 0.5rem;
+    margin-right: 0.5rem !important;
     border: none;
     background: #fff;
     color: #f31632;
-    margin-right: 0;
     border-radius: 5px;
     line-height: 1.5;
     font-size: 1rem;
-
     text-align: center;
     cursor: pointer;
     outline: none;
+    transform: 0 0;
 }
+
+.ui.modals {
+    position: fixed;
+    z-index: 1;
+}
+
+
+/* #modal {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 100px;
+    bottom: 0;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+ } */

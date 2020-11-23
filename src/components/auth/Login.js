@@ -8,15 +8,15 @@ import my_api from '../../apis/my_api';
 
 class Login extends React.Component {
     state = {
-        email: 'anna@abc.de',
-        password: '123',
+        username: '',
+        password: '',
         error: '',
         submitted: '',
         loading: ''
     };
 
-    onEmailChange = e => {
-        this.setState({ email: e.target.value });
+    onUsernameChange = e => {
+        this.setState({ username: e.target.value });
     };
 
     onPasswordChange = e => {
@@ -27,25 +27,31 @@ class Login extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { email, password } = this.state;
+        const { username, password } = this.state;
 
         // stop here if form is invalid
-        if (!email || !password) return;
+        if (!username || !password) return;
 
         this.setState({ loading: true });
 
-        const user = _.pick(this.state, ['email', 'password']);
+        const user = _.pick(this.state, ['username', 'password']);
+        this.login(user);
+    }
+
+    loginAsGuest = () => {
+        this.login({ username: 'guest', password: '123' });
+    };
+    login = user => {
         my_api.post('/api/auth', user)
             .then((res) => {
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('user', JSON.stringify(res.data.user));
 
+                // Clear password and redirect home
                 this.props.signIn(res.data.user);
                 this.setState({ password: '' });
                 history.push('/');
-                // window.location.reload();
-            }/* ,
-            error => {this.setState({error, loading: false}); }*/
+            }
 
             )
             .catch(error => {
@@ -53,24 +59,25 @@ class Login extends React.Component {
             });
     }
 
+
     renderError(error) {
         if (!error) {
             return <div>Connection Problem</div>;
         } else if (error.response.status === 400) {
-            return <div>Email or password is wrong!</div>
+            return <div>Username or password is wrong</div>
         }
     }
 
     render() {
-        const { email, password, error, submitted, loading } = this.state;
+        const { username, password, error, submitted, loading } = this.state;
         return (
-            <div>
+            <div style={{ marginTop: "4rem" }}>
                 <form className="ui form" onSubmit={this.onSubmit}>
                     <div className="field">
-                        <label>Email: </label>
-                        <input type="text" value={email} onChange={this.onEmailChange} />
-                        {submitted && !email &&
-                            <div>Email is reqired!</div>
+                        <label>Username: </label>
+                        <input type="text" value={username} onChange={this.onUsernameChange} />
+                        {submitted && !username &&
+                            <div>Username is reqired!</div>
                         }
                     </div>
                     <div className="field">
@@ -83,26 +90,31 @@ class Login extends React.Component {
                     </div>
                     <div className="field">
                         <button
-                            className="ui blue button"
+                            className="ui blue button btn-block"
                             type="submit"
-                        >Submit
+                        >Login
                         </button>
                         {loading &&
                             <div className="ui segment">
                                 <div className="ui active inverted dimmer">
-                                    <div className="ui text loader">Loading</div>
                                 </div>
                             </div>}
                     </div>
                     {error &&
                         <div>{this.renderError(error)}</div>}
+
                 </form>
 
 
-                {/* {error && error.response.status === 400 &&
-                <div>Email or password is wrong! </div>} */}
-                {/* error && error.response.status !== 400 &&
-                <div>Errr status is not 400 </div> */}
+
+                <div id="login-register-buttons">
+                    <button onClick={this.loginAsGuest} style={{ margin: "1rem", color: "#333" }} className="ui button btn-block my-1 py-1">Login as guest</button>
+                    <div>OR</div>
+                    <button style={{ margin: "1rem" }} className="ui button
+                    btn-block my-1 py-1">
+                        <a href="/register">Register</a></button>
+                </div>
+
             </div>
         );
     };

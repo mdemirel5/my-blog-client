@@ -14,8 +14,8 @@ class AuthButton extends React.Component {
     renderLoginButton() {
         return (
             <div>
-                <Link to="/register" className="ui blue button">Register</Link>
-                <Link to="/login" className="ui button">Login</Link>
+                {/*   <Link to="/register" className="ui blue button">Register</Link>
+                    <Link to="/login" className="ui button">Login</Link> */}
             </div>
 
         );
@@ -29,8 +29,8 @@ class AuthButton extends React.Component {
 
     renderLogoutButton() {
         return (
-            <button className="ui red button"
-                onClick={this.onSingOutClick}>Logout</button>
+            <button className="ui button" style={{ width: "110px" }}
+                onClick={this.onSingOutClick}>Sign out</button>
         );
     };
 

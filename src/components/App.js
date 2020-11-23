@@ -1,11 +1,9 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 
-
 import BlogList from './blogs/BlogList';
 import BlogCreate from './blogs/BlogCreate';
 import BlogEdit from './blogs/BlogEdit';
-//import BlogShow from './blogs/BlogShow';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import history from '../history';

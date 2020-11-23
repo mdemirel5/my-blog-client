@@ -86,5 +86,5 @@ export const deleteBlog = id => async dispatch => {
         payload: id
     });
 
-    history.push("/");
+    alert('Your blog has been deleted');
 };
