@@ -6,16 +6,14 @@ import moment from 'moment';
 import DeleteClick from './DeleteClick';
 import { deleteBlog } from '../../actions';
 import history from '../../history';
-import './BlogShow.css';
-
 
 
 class BlogShow extends React.Component {
-    state = { deleted: false, show: false };
+    state = { deleted: false, showModal: false };
 
     onDeleteClick = () => {
         if (this.props.userId === this.props.blog.user._id) {
-            this.setState({ show: true });
+            this.setState({ showModal: true });
         } else {
             alert('Only the author of this blog can delete this blog');
         }
@@ -75,9 +73,9 @@ class BlogShow extends React.Component {
         );
     };
 
-    showModal = () => {
+    hideModal = () => {
         this.setState({
-            show: false
+            showModal: false
         });
     };
 
@@ -87,14 +85,14 @@ class BlogShow extends React.Component {
         }
 
         return (
-            <div className="blog-div m-top-1" style={{ fontSize: "16px" }}>
+            <div className="blog-div margin-top-1" style={{ fontSize: "16px" }}>
                 {/*  <div id="modal"></div> */}
 
                 <DeleteClick
-
-                    onDismiss={this.showModal}
-                    show={this.state.show}
+                    hideModal={this.hideModal}
+                    showModal={this.state.showModal}
                     blog={this.props.blog} />
+
                 <div className="comment">
                     <div className="content">
                         <h3 className="">{this.props.blog.title}</h3>

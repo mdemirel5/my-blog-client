@@ -22,7 +22,7 @@ export const signOut = () => {
 };
 
 export const fetchBlogs = () => async dispatch => {
-    const response = await my_api.get('/blogs', {
+    const response = await my_api.get('/api/blogs', {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }
@@ -34,7 +34,7 @@ export const fetchBlogs = () => async dispatch => {
     });
 };
 export const fetchBlog = id => async dispatch => {
-    const response = await my_api.get(`/blogs/${id}`);
+    const response = await my_api.get(`/api/blogs/${id}`);
 
     dispatch({
         type: FETCH_BLOG,
@@ -43,7 +43,7 @@ export const fetchBlog = id => async dispatch => {
 };
 
 export const editBlog = (id, blog) => async dispatch => {
-    const response = await my_api.put(`blogs/${id}`,
+    const response = await my_api.put(`/api/blogs/${id}`,
         blog,
         {
             headers: {
@@ -59,7 +59,7 @@ export const editBlog = (id, blog) => async dispatch => {
 };
 
 export const createBlog = (blog) => async dispatch => {
-    const response = await my_api.post('/blogs',
+    const response = await my_api.post('/api/blogs',
         blog,
         {
             headers: {
@@ -75,7 +75,7 @@ export const createBlog = (blog) => async dispatch => {
 };
 
 export const deleteBlog = id => async dispatch => {
-    await my_api.delete(`/blogs/${id}`, {
+    await my_api.delete(`/api/blogs/${id}`, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }

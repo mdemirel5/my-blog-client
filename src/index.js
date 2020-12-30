@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
+import './index.css';
 import reducers from './reducers';
 import App from './components/App';
 
@@ -13,7 +14,7 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
-         <App />
+        <App />
     </Provider>,
     document.querySelector('#root')
 );

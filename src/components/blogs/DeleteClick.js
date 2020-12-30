@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteBlog } from '../../actions';
-import { Link } from 'react-router-dom';
 import Modal from '../Modal'
 
 class DeleteClick extends Component {
@@ -10,14 +9,14 @@ class DeleteClick extends Component {
         return (
             <React.Fragment>
                 <button
-                    onClick={e => {
+                    onClick={() => {
                         this.props.deleteBlog(this.props.blog._id);
-                        this.onDismiss(e);
+                        this.props.hideModal();
                     }}
                     className="ui button negative">Delete</button>
-                <Link to="/"
-                    onClick={e => this.onDismiss(e)}
-                    className="ui button">Cancel</Link>
+                <button
+                    onClick={this.props.hideModal}
+                    className="ui button">Cancel</button>
             </React.Fragment>
         );
     };
@@ -27,12 +26,10 @@ class DeleteClick extends Component {
         }
         return `Are you sure you want to delete the blog with title "${this.props.blog.title}"?`
     }
-    onDismiss = e => {
-        this.props.onDismiss && this.props.onDismiss(e);
-    };
+
 
     render() {
-        if (!this.props.show) {
+        if (!this.props.showModal) {
             return null;
         }
         return (
@@ -40,7 +37,7 @@ class DeleteClick extends Component {
                 title="Delete Blog"
                 content={this.renderContent()}
                 actions={this.renderActions()}
-                onDismiss={e => this.onDismiss(e)}
+                onDismiss={this.props.hideModal}
             />
         )
     };

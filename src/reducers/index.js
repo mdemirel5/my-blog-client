@@ -17,12 +17,18 @@ const authReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGN_IN:
             return {
-                ...state, isSignedIn: true,
+                ...state,
+                isSignedIn: true,
                 name_user: action.payload.name,
                 userId: action.payload._id
             };
         case SIGN_OUT:
-            return { ...state, isSignedIn: false, name_user: null, userId: null };
+            return {
+                ...state,
+                isSignedIn: false,
+                name_user: null,
+                userId: null
+            };
         default:
             return state;
     }
@@ -35,9 +41,10 @@ const blogReducer = (state = {}, action) => {
         case EDIT_BLOG: return { ...state, [action.payload._id]: action.payload };
         case CREATE_BLOG: return { ...state, [action.payload._id]: action.payload };
         case DELETE_BLOG: return _.omit(state, action.payload);
-        default: return state
+        default: return state;
     }
 };
+
 
 export default combineReducers({
     blogs: blogReducer,

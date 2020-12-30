@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import BlogShow from './BlogShow';
 import { fetchBlogs } from '../../actions';
-import Login from '../auth/Login';
+import Login from '../login-register/Login';
 
 
 class BlogList extends React.Component {

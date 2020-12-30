@@ -1,9 +1,13 @@
 import axios from 'axios';
 
+const local = 'http://localhost:4000';
+
+const heroku = 'https://my-blog1998.herokuapp.com';
+
 export default axios.create({
-    baseURL: 'https://my-blog1998.herokuapp.com'
+    baseURL: local
 });
 
 /*'https://my-blog1998.herokuapp.com'  */
 
-/* http://localhost:4000 */
+/*  */
