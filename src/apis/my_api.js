@@ -7,7 +7,3 @@ const heroku = 'https://my-blog1998.herokuapp.com';
 export default axios.create({
     baseURL: heroku
 });
-
-/*'https://my-blog1998.herokuapp.com'  */
-
-/*  */
