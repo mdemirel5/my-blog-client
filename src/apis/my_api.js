@@ -5,7 +5,7 @@ const local = 'http://localhost:4000';
 const heroku = 'https://my-blog1998.herokuapp.com';
 
 export default axios.create({
-    baseURL: local
+    baseURL: heroku
 });
 
 /*'https://my-blog1998.herokuapp.com'  */
