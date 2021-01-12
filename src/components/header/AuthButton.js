@@ -35,7 +35,7 @@ class AuthButton extends React.Component {
 
     renderLogoutButton() {
         return (
-            <button className="ui button"
+            <button id="user-info-button" className="ui button "
                 onClick={this.onSingOutClick}>{this.props.name}</button>
         );
     };
